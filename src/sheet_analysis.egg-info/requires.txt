@@ -1,6 +1,0 @@
-matplotlib
-ollama
-pandas
-numpy
-scikit-learn
-scipy
