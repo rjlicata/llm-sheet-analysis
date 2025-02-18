@@ -8,7 +8,7 @@ Your code should contain only the imports, the function (func) that takes one ar
 You can assume that the data will always be a pandas DataFrame. \
 Please do not include any print statements or test/sample data in your code. \
 If your code requires figures, use the matplotlib `savefig` function to save it to the following path: "figures/output.png". \
-Remember to close the figure before the end of the function.
+Remember to close the figure before the end of the function. Only generate figures when prompted to.
 The only packages you can import are: pandas, numpy, datetime, re, sklearn, matplotlib, and scipy.
 
 Example 1:
@@ -28,4 +28,4 @@ def func(data):
 End examples.
 """
 
-REFACTOR_PROMPT = "I just asked a question, and you wrote code to answer. The output was: {response}. Please respond with that answer in it."
+REFACTOR_PROMPT = "I just asked a question, and you wrote code to answer. The output was: {response}. Please respond with that answer in it, and do not include any code."

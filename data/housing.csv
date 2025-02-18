@@ -1,31 +1,31 @@
-﻿Index,Street Address,City,Square Footage,Price,,,,,,,,
-1,847 Oakdale Drive,Centennial,1568,460200,,,,,,,,
-2,421 Maple Street,Centennial,4099,1152700,,,,,,,,
-3,189 Pineview Avenue,Centennial,4595,1264300,,,,,,,,
-4,623 Cedar Court,Centennial,2529,718600,,,,,,,,
-5,842 Walnut Road,Centennial,1321,360600,,,,,,,,
-6,118 Larkspur Place,Centennial,2414,672500,,,,,,,,
-7,351 Hawthorne Way,Lakewood,3003,832600,,,,,,,,
-8,628 Spruce Street,Lakewood,3444,954700,,,,,,,,
-9,219 Fernwood Drive,Lakewood,1427,406600,,,,,,,,
-10,942 Oakridge Boulevard,Lakewood,2030,570000,,,,,,,,
-11,135 Cherry Hill Lane,Lakewood,1821,505800,,,,,,,,
-12,628 Elm Street,Arvada,2834,781400,,,,,,,,
-13,475 Maple Ridge Road,Arvada,3618,1026200,,,,,,,,
-14,811 Cedarhurst Court,Arvada,3968,1086600,,,,,,,,
-15,239 Pine Valley Drive,Arvada,3545,980800,,,,,,,,
-16,601 Larchwood Avenue,Parker,2726,743000,,,,,,,,
-17,842 Ashwood Place,Parker,2661,741500,,,,,,,,
-18,351 Briarwood Way,Parker,1429,412700,,,,,,,,
-19,219 Greenhaven Lane,Parker,2727,769900,,,,,,,,
-20,135 Sunset Boulevard,Parker,1733,474600,,,,,,,,
-21,942 Maplecrest Road,Parker,2737,775400,,,,,,,,
-22,627 Hawthorne Street,Parker,1744,472000,,,,,,,,
-23,189 Oakbrook Drive,Parker,4740,1349200,,,,,,,,
-24,421 Fernwood Court,Parker,4931,1360700,,,,,,,,
-25,623 Larkspur Place,Lone Tree,3038,846800,,,,,,,,
-26,842 Cherry Hill Road,Lone Tree,4668,1314500,,,,,,,,
-27,118 Greenhaven Way,Lone Tree,2816,788400,,,,,,,,
-28,351 Oakdale Drive,Lone Tree,3987,1127900,,,,,,,,
-29,942 Walnut Boulevard,Lone Tree,2153,622500,,,,,,,,
-30,135 Pineview Street,Lone Tree,4356,1217800,,,,,,,,
+﻿Index,Street Address,City,Square Footage,Price
+1,847 Oakdale Drive,Centennial,1568,460200
+2,421 Maple Street,Centennial,4099,1152700
+3,189 Pineview Avenue,Centennial,4595,1264300
+4,623 Cedar Court,Centennial,2529,718600
+5,842 Walnut Road,Centennial,1321,360600
+6,118 Larkspur Place,Centennial,2414,672500
+7,351 Hawthorne Way,Lakewood,3003,832600
+8,628 Spruce Street,Lakewood,3444,954700
+9,219 Fernwood Drive,Lakewood,1427,406600
+10,942 Oakridge Boulevard,Lakewood,2030,570000
+11,135 Cherry Hill Lane,Lakewood,1821,505800
+12,628 Elm Street,Arvada,2834,781400
+13,475 Maple Ridge Road,Arvada,3618,1026200
+14,811 Cedarhurst Court,Arvada,3968,1086600
+15,239 Pine Valley Drive,Arvada,3545,980800
+16,601 Larchwood Avenue,Parker,2726,743000
+17,842 Ashwood Place,Parker,2661,741500
+18,351 Briarwood Way,Parker,1429,412700
+19,219 Greenhaven Lane,Parker,2727,769900
+20,135 Sunset Boulevard,Parker,1733,474600
+21,942 Maplecrest Road,Parker,2737,775400
+22,627 Hawthorne Street,Parker,1744,472000
+23,189 Oakbrook Drive,Parker,4740,1349200
+24,421 Fernwood Court,Parker,4931,1360700
+25,623 Larkspur Place,Lone Tree,3038,846800
+26,842 Cherry Hill Road,Lone Tree,4668,1314500
+27,118 Greenhaven Way,Lone Tree,2816,788400
+28,351 Oakdale Drive,Lone Tree,3987,1127900
+29,942 Walnut Boulevard,Lone Tree,2153,622500
+30,135 Pineview Street,Lone Tree,4356,1217800
