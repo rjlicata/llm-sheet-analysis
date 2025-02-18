@@ -11,20 +11,23 @@ from sheet_analysis.utils.spreadsheet import load_data
 
 
 class AnalysisAgent:
+    """handles prompting and interaction with the Ollama ModelHandler for code generation;
+    also runs the code which is where code safety is handled"""
+
     def __init__(
         self,
         filepath: str,
         model_name: str = "llama3.2",
-        temperature: int = 0,
+        temperature: float = 0.0,
     ):
-        """_summary_
+        """initializes AnalysisAgent
 
         :param filepath: path to dataset
         :type filepath: str
         :param model_name: Ollama model name to use, defaults to "llama3.2"
         :type model_name: str, optional
-        :param temperature: generation temperature for the LLM, defaults to 0
-        :type temperature: int, optional
+        :param temperature: generation temperature for the LLM, defaults to 0.0
+        :type temperature: float, optional
         """
         self._data = load_data(filepath)
         self._model = ModelHandler(
@@ -33,6 +36,13 @@ class AnalysisAgent:
         )
 
     def _analyze(self, prompt: str) -> Tuple[str, str, bool]:
+        """adds column information to the prompt, invokes the model, and runs the code
+
+        :param prompt: original user query
+        :type prompt: str
+        :return: code output, code, and error flag
+        :rtype: Tuple[str, str, bool]
+        """
         prompt = f"The data has the following columns: {self._data.columns}. {prompt}"
         response = self._model.invoke(prompt, sys_msg=CODE_GEN_SYSTEM_MESSAGE)
         error = False
@@ -45,10 +55,27 @@ class AnalysisAgent:
         return result, code, error
 
     def _refactor_output(self, response: str) -> str:
+        """the original code output will be of a numerical or JSONic type, so this
+        handles reprompting the model with the code output to get an assistant response
+        to the user query
+
+        :param response: code output
+        :type response: str
+        :return: assistant response with the output
+        :rtype: str
+        """
         prompt = REFACTOR_PROMPT.format(response=response)
         return self._model.invoke(prompt, sys_msg=BASIC_SYSTEM_MESSAGE)
 
     def invoke(self, prompt: str) -> str:
+        """invocation of the AnalysisAgent; handles model calling, code processing,
+        code running, response refactoring, and error handling
+
+        :param prompt: user query
+        :type prompt: str
+        :return: final response from the model/code
+        :rtype: str
+        """
         code_output, code, error_flag = self._analyze(prompt)
         if error_flag:
             return f"I am sorry, I ran into the following error: {code_output}\n\nHere is the code I generated:\n\n{code}"

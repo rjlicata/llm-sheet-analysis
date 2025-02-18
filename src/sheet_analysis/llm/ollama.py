@@ -4,7 +4,7 @@ from sheet_analysis.llm.prompts import BASIC_SYSTEM_MESSAGE
 
 
 class ModelHandler:
-    """_summary_"""
+    """handles basic communication with the Ollama model endpoint"""
 
     def __init__(
         self,
@@ -16,7 +16,7 @@ class ModelHandler:
 
         :param model_name: Ollama model name, defaults to "llama3.2"
         :type model_name: str, optional
-        :param system_message: system message override, defaults to SYSTEM_MESSAGE
+        :param system_message: system message for the LLM, defaults to BASIC_SYSTEM_MESSAGE
         :type system_message: str, optional
         :param temperature: generation temperature for the model, defaults to 0.7
         :type temperature: float, optional
@@ -26,7 +26,8 @@ class ModelHandler:
         self._temperature = temperature
         self.clear_messages()
 
-    def clear_messages(self):
+    def clear_messages(self) -> None:
+        """resets messages with only system message"""
         self._messages = [
             {
                 "role": "system",
@@ -34,7 +35,7 @@ class ModelHandler:
             },
         ]
 
-    def _check_system_message(self, sys_msg: str):
+    def _check_system_message(self, sys_msg: str) -> None:
         """updates the system message with a user-provided one if it is different
         than the one in the message list
 
@@ -44,7 +45,16 @@ class ModelHandler:
         if self._messages[0]["content"] != sys_msg:
             self._messages[0]["content"] = sys_msg
 
-    def invoke(self, user_message: str, sys_msg: str = None):
+    def invoke(self, user_message: str, sys_msg: str = None) -> str:
+        """handles the message list and invokes the LLM
+
+        :param user_message: user query
+        :type user_message: str
+        :param sys_msg: user override to system message, defaults to None
+        :type sys_msg: str, optional
+        :return: model response
+        :rtype: str
+        """
         if sys_msg is not None:
             self._check_system_message(sys_msg)
         self._messages.append(
