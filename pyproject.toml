@@ -1,0 +1,24 @@
+[project]
+name = "sheet_analysis"
+requires-python = ">=3.8"
+version = "0.0.1"
+dependencies = [
+    "matplotlib",
+    "ollama",
+    "pandas",
+    "numpy",
+    "scikit-learn",
+    "scipy",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.dynamic]
+readme = {file = ["README.md"], content-type = "text/markdown"}
+
+[tool.ruff]
+exclude = ["*.ipynb"]
+
+[tool.ruff.lint]
+ignore = ["E501"]
