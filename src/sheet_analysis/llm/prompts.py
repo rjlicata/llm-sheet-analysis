@@ -28,4 +28,4 @@ def func(data):
 End examples.
 """
 
-REFACTOR_PROMPT = "I just asked a question, and you wrote code to answer. The output was: {response}. Please respond with that answer it."
+REFACTOR_PROMPT = "I just asked a question, and you wrote code to answer. The output was: {response}. Please respond with that answer in it."
