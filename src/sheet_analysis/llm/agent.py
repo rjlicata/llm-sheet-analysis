@@ -76,7 +76,6 @@ class AnalysisAgent:
         :return: final response from the model/code
         :rtype: str
         """
-        code_output = None
         code_output, code, error_flag = self._analyze(prompt)
         if error_flag:
             return f"I am sorry, I ran into the following error: {code_output}\n\nHere is the code I generated:\n\n{code}"
