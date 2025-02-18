@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import Any, Tuple
 
 from sheet_analysis.utils.coding import run_code
 from sheet_analysis.llm.ollama import ModelHandler
@@ -54,13 +54,13 @@ class AnalysisAgent:
             code = response
         return result, code, error
 
-    def _refactor_output(self, response: str) -> str:
+    def _refactor_output(self, response: Any) -> str:
         """the original code output will be of a numerical or JSONic type, so this
         handles reprompting the model with the code output to get an assistant response
         to the user query
 
         :param response: code output
-        :type response: str
+        :type response: Any
         :return: assistant response with the output
         :rtype: str
         """
@@ -76,14 +76,18 @@ class AnalysisAgent:
         :return: final response from the model/code
         :rtype: str
         """
+        code_output = None
         code_output, code, error_flag = self._analyze(prompt)
         if error_flag:
             return f"I am sorry, I ran into the following error: {code_output}\n\nHere is the code I generated:\n\n{code}"
         if code_output is None and ("savefig" not in code):
-            return f"Here is the code I generated to get that:\n\n{code}"
-        model_output = self._refactor_output(code_output)
-        response = f"{model_output}\n\nHere is the code I generated to get that:\n\n{code}"
+            return f"Here is the code I generated:\n\n{code}"
+        response = ""
+        if code_output is not None:
+            model_output = self._refactor_output(code_output)
+            response += f"{model_output}\n\n"
         if "savefig" in code:
-            response += "\n\nI generated a figure for you. It is located at figures/output.png"
+            response += "I generated a figure for you. It is located at figures/output.png\n\n"
+        response += f"Here is the code I generated to get that:\n\n{code}"
         self._model.clear_messages()
         return response

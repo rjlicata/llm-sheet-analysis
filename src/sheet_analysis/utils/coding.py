@@ -1,7 +1,10 @@
+import importlib
 import os
 from typing import Any, Tuple
 
 import pandas as pd
+
+from temp_data import temp_funcs
 
 ALLOWED_PACKAGES = ["pandas", "numpy", "datetime", "re", "sklearn", "scipy", "matplotlib"]
 
@@ -81,9 +84,9 @@ def run_code(response: str, data: pd.DataFrame) -> Tuple[Any, str]:
     response = response.split("```python")[1].split("```")[0]
     response = remove_end_of_code(response)
     write_code(response)
-    from temp_data.temp_funcs import func
+    importlib.reload(temp_funcs)
 
-    output = func(data)
+    code_output = temp_funcs.func(data)
     empty_file()
     code_string = f"```python\n{response}\n```"
-    return output, code_string
+    return code_output, code_string
