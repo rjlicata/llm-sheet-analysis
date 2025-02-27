@@ -1,4 +1,4 @@
-from ollama import chat
+from openai import OpenAI
 
 from sheet_analysis.llm.prompts import BASIC_SYSTEM_MESSAGE
 
@@ -21,6 +21,10 @@ class ModelHandler:
         :param temperature: generation temperature for the model, defaults to 0.7
         :type temperature: float, optional
         """
+        self._client = OpenAI(
+            base_url="http://host.docker.internal:11434/v1",
+            api_key="ollama",
+        )
         self._model_name = model_name
         self._system_message = system_message
         self._temperature = temperature
@@ -63,11 +67,15 @@ class ModelHandler:
                 "content": user_message,
             },
         )
-        response = chat(
-            model=self._model_name,
-            messages=self._messages,
-            options={"temperature": self._temperature},
-        ).message.content
+        response = (
+            self._client.chat.completions.create(
+                messages=self._messages,
+                model=self._model_name,
+                temperature=self._temperature,
+            )
+            .choices[0]
+            .message.content
+        )
         self._messages.append(
             {
                 "role": "assistant",

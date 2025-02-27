@@ -20,7 +20,7 @@ def conversation(filepath: str, model_name: str = "llama3.2", temperature: float
     )
     user_input = ""
     print("Your session with the agent is beginning. To end, enter STOP or hit Ctrl + C")
-    sleep(3)
+    sleep(1)
     while True:
         print("-" * 150)
         user_input = input("User Message: ")
