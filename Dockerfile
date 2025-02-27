@@ -6,6 +6,8 @@ COPY pyproject.toml/ ./pyproject.toml
 
 RUN pip install .
 
+USER nobody
+
 WORKDIR /workspace
 
 ENTRYPOINT []
