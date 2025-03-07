@@ -1,4 +1,12 @@
-FROM python:3.10.12
+FROM python:3.12.9
+
+RUN pip install matplotlib
+RUN pip install pandas
+RUN pip install numpy
+RUN pip install scikit-learn
+RUN pip install scipy
+RUN pip install openai
+RUN pip install streamlit
 
 WORKDIR /tmp
 COPY src/ ./src
@@ -9,7 +17,10 @@ RUN pip install .
 USER nobody
 
 WORKDIR /workspace
+COPY main.py ./main.py
 
-ENTRYPOINT []
+COPY temp_data ./temp_data
 
-CMD ["/bin/bash"]
+EXPOSE 8501
+
+ENTRYPOINT ["streamlit", "run", "main.py", "--server.runOnSave", "false"]

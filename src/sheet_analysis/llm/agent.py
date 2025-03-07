@@ -46,12 +46,13 @@ class AnalysisAgent:
         prompt = f"The data has the following columns: {self._data.columns}. {prompt}"
         response = self._model.invoke(prompt, sys_msg=CODE_GEN_SYSTEM_MESSAGE)
         error = False
-        try:
-            result, code = run_code(response, self._data)
-        except Exception as e:
-            error = True
-            result = e
-            code = response
+        result, code = run_code(response, self._data)
+        # try:
+        #     result, code = run_code(response, self._data)
+        # except Exception as e:
+        #     error = True
+        #     result = e
+        #     code = response
         return result, code, error
 
     def _refactor_output(self, response: Any) -> str:
