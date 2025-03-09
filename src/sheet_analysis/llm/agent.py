@@ -24,8 +24,8 @@ class AnalysisAgent:
     ):
         """initializes AnalysisAgent
 
-        :param filepath: path to dataset
-        :type filepath: str
+        :param data: data to be analyzed
+        :type data: pd.DataFrame
         :param model_name: Ollama model name to use, defaults to "llama3.2"
         :type model_name: str, optional
         :param temperature: generation temperature for the LLM, defaults to 0.0

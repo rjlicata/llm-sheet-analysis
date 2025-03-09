@@ -14,4 +14,3 @@ COPY main.py ./main.py
 EXPOSE 8501
 
 ENTRYPOINT ["streamlit", "run", "main.py"]
-# ENTRYPOINT ["streamlit", "run", "main.py", "--server.runOnSave", "false"]
