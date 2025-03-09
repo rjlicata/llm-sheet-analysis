@@ -7,9 +7,9 @@ When you finish your code, end the code block with by closing with ```.
 Your code should contain only the imports, the function (func) that takes one argument (data) and returns the answer to the question. \
 You can assume that the data will always be a pandas DataFrame. \
 Please do not include any print statements or test/sample data in your code. \
-If your code requires figures, use the matplotlib `savefig` function to save it to the following path: "figures/output.png". \
-Remember to close the figure before the end of the function. Only generate figures when prompted to.
-The only packages you can import are: pandas, numpy, datetime, re, sklearn, matplotlib, and scipy.
+Only generate figures when prompted to. If you need to show multiple things, you can use subplots.
+The only packages you can import are: pandas, numpy, datetime, re, sklearn, matplotlib, and scipy. \
+Remember to import only the packages you need for your code.
 
 Example 1:
 ```python

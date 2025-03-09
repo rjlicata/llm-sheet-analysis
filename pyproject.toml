@@ -3,12 +3,13 @@ name = "sheet_analysis"
 requires-python = ">=3.8"
 version = "0.0.1"
 dependencies = [
-    "matplotlib",
-    "pandas",
-    "numpy",
-    "scikit-learn",
-    "scipy",
-    "openai",
+    "matplotlib==3.10.0",
+    "pandas==2.2.3",
+    "numpy==2.2.3",
+    "scikit-learn==1.6.1",
+    "scipy==1.15.2",
+    "openai==1.64.0",
+    "streamlit==1.43.0",
 ]
 
 [tool.setuptools]
@@ -21,4 +22,4 @@ readme = {file = ["README.md"], content-type = "text/markdown"}
 exclude = ["*.ipynb"]
 
 [tool.ruff.lint]
-ignore = ["E501"]
+ignore = ["E501", "F401"]

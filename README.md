@@ -20,64 +20,21 @@ make build
 
 This will build the docker image and install a local Python package `sheet_analysis`.
 
-### main.py
+### Streamlit App
 
-In the main level of the directory, there is a code ["main.py"](main.py). This can be accessed by running `make converse` in the terminal. If you provide a data path for a spreadsheet, it will initialize a conversation-style interaction with the agent. You can ask it questions about the data, and it will generate code, run it, and respond with the answer. An example of this is shown below. This is broken up, because the LLM generates markdown for the code.
+In the main level of the directory, there is a code ["main.py"](main.py). This can be accessed by running `make app` in the terminal. Once you select the Local URL ([http://localhost:8501](http://localhost:8501)), the Streamlit app will come up in your browser. It looks like this:
 
-```
-Your session with the agent is beginning. To end, enter STOP or hit Ctrl + C
------------------------------------------------------------------------
-User Message: What city has the smallest house?
-AI Response: The city with the smallest house is Lakewood.
+![](assets/start-page.png)
 
-Here is the code I generated to get that:
-```
+Once you upload a CSV or XLSX file, the chat bar will pop up. On the side bar, there are options for model name, temperature, and whether or not you want to see the generated code. It is important to note that the model name must match with a model that you have locally downloaded with Ollama.
 
-```python
-import pandas as pd
+Once everything is set, you can begin to ask questions to the model. The data is already loaded, so the model will generate code required to answer the question, run it, and return the answer. If you have selected to show code, it will show you the code with the answer. Here is an example of some questions on the sample data.
 
-def func(data):
-    # Filter out non-numeric values from Square Footage column
-    data['Square Footage'] = pd.to_numeric(data['Square Footage'])
-    
-    # Find the city with the smallest average square footage
-    min_city = data.groupby('City')['Square Footage'].mean().idxmin()
-    
-    return f"The city with the smallest house is {min_city}."
+![](assets/multi-turn.png)
 
-```
-```
------------------------------------------------------------------------
-User Message: Tell me about the smallest house in Arvada.
-AI Response: The smallest house in Arvada has a square footage of 2834 and is located at 628 Elm Street, priced at $781,400.
+Currently, the model is not exposed to the chat history. This can cause some limitations if you desire the ability to have a more natural flowing conversation, but this is intended for small, locally-run models. The final example here shows the capability for the model to generate visualizations.
 
-Here is the code I generated to get that:
-```
-```python
-
-import pandas as pd
-import matplotlib.pyplot as plt
-
-def func(data):
-    # Filter the data for houses in Arvada
-    arvada_houses = data[data['City'] == 'Arvada']
-    
-    # Find the smallest house
-    smallest_house = arvada_houses.loc[arvada_houses['Square Footage'].idxmin()]
-    
-    return smallest_house
-
-```
-```
------------------------------------------------------------------------
-User Message: STOP
------------------------------------------------------------------------
-Your session has ended. Thank you!
-```
-
-### Example Notebook
-
-There is an [example notebook](notebooks/housing-example.ipynb) for the housing data. It shows the minimal code required to communicate with the agent with three examples. Some example figures from this can be found [here](notebooks/figures/output.png) and [here](figures/output.png).
+![](assets/visual.png)
 
 ### Potential Risks and Safeguards
 
@@ -90,6 +47,7 @@ There are inherent risks with allowing a model to write code that is blindly exe
     - Furthermore, it is unlikely that llama3.2 will generate nefarious code when prompted the way it is: analyze this DataFrame.
 
 3. There are import checks conducted to ensure that the only imports come from these packages.
+    - If the generated code imports any other packages, an error is raised, and the code is not executed.
 
 As previously mentioned, these are very basic safeguards. Use at your own risk.
 
@@ -97,12 +55,8 @@ As previously mentioned, these are very basic safeguards. Use at your own risk.
 
 These are items that are planned to be added/updated.
 
-1. Add configuration file to make it clear what file, model, etc. you want to use when running "main.py" or `make converse`.
-
-2. Add better safeguards.
+1. Add better safeguards.
     - There are likely packages out there that can address some of the aforementioned concerns.
 
-3. Create chat GUI to replace "main.py".
-
-4. Implement other LLM communication methods.
+2. Implement other LLM communication methods.
     - This currently only handles Ollama-hosted models using OpenAI API.

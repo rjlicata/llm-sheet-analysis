@@ -1,4 +1,4 @@
-FROM python:3.10.12
+FROM python:3.12.9
 
 WORKDIR /tmp
 COPY src/ ./src
@@ -9,7 +9,8 @@ RUN pip install .
 USER nobody
 
 WORKDIR /workspace
+COPY main.py ./main.py
 
-ENTRYPOINT []
+EXPOSE 8501
 
-CMD ["/bin/bash"]
+ENTRYPOINT ["streamlit", "run", "main.py"]

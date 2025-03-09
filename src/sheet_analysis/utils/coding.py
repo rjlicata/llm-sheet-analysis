@@ -1,10 +1,10 @@
 import importlib
 import os
+import time
 from typing import Any, Tuple
 
 import pandas as pd
 
-from temp_data import temp_funcs
 
 ALLOWED_PACKAGES = ["pandas", "numpy", "datetime", "re", "sklearn", "scipy", "matplotlib"]
 
@@ -64,7 +64,7 @@ def write_code(response: str) -> None:
         file.write(response)
 
 
-def empty_file() -> None:
+def clear_file() -> None:
     """empties the contents of the temporary function file"""
     with open("temp_data/temp_funcs.py", "w") as file:
         file.write("")
@@ -84,9 +84,9 @@ def run_code(response: str, data: pd.DataFrame) -> Tuple[Any, str]:
     response = response.split("```python")[1].split("```")[0]
     response = remove_end_of_code(response)
     write_code(response)
-    importlib.reload(temp_funcs)
-
+    time.sleep(0.1)
+    temp_funcs = importlib.import_module("temp_data.temp_funcs")
     code_output = temp_funcs.func(data)
-    empty_file()
+    clear_file()
     code_string = f"```python\n{response}\n```"
     return code_output, code_string
