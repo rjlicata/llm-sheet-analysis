@@ -10,9 +10,3 @@ build:
 
 app: build
 	docker run --rm  -p 8501:8501 -w $(WORKING_DIR) --shm-size=10.07gb -v $(DATA):/workspace $(NAME)
-
-bash: build
-	docker run -it --rm -p 8501:8501 -w $(WORKING_DIR) --shm-size=10.07gb -v $(DATA):/workspace $(NAME) /bin/bash
-
-converse: build
-	docker run -it --rm --net=host -w $(WORKING_DIR) --shm-size=10.07gb -v $(DATA):/workspace $(NAME) python main.py

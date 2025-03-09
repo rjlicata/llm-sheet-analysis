@@ -58,9 +58,11 @@ def main():
             if code.count("plt") > 1:
                 st.pyplot(plt.gcf())
 
+    # clear chat option
+    if st.sidebar.button("Clear Chat"):
+        st.session_state.messages = []
 
-# Run the Streamlit app
+
+# run the Streamlit app
 if __name__ == "__main__":
     main()
-
-# can you show the trend between cost and square footage?
