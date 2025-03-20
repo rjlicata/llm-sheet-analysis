@@ -4,7 +4,7 @@ This is a repository for utilizing an LLM to write and execute code related to s
 
 ### Caution
 
-This is a prototype. It is able to write and execute code which is an inherent risk. There are some basic safeguards in place which will be discussed [later](#potential-risks).
+This is a prototype. It is able to write and execute code which is an inherent risk. There are some basic safeguards in place which will be discussed [later](#potential-risks-and-safeguards).
 
 ### Prerequisites
 
@@ -44,7 +44,7 @@ There are inherent risks with allowing a model to write code that is blindly exe
 
 2. In the code generation prompt, we tell the model it only has access to `pandas`, `numpy`, `datetime`, `re`, `sklearn`, `matplotlib`, and `scipy`.
     - These packages should not have things that can necessarily be used nefariously by an LLM (to my knowledge).
-    - Furthermore, it is unlikely that llama3.2 will generate nefarious code when prompted the way it is: analyze this DataFrame.
+    - Furthermore, it is unlikely that llama3.2 will generate nefarious code when prompted the way it is: "analyze this DataFrame".
 
 3. There are import checks conducted to ensure that the only imports come from these packages.
     - If the generated code imports any other packages, an error is raised, and the code is not executed.
